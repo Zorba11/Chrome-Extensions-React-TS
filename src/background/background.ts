@@ -1,5 +1,9 @@
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-  console.log('Message from content script: ', msg);
-  console.log(sender);
-  sendResponse('From the background script');
-});
+chrome.webRequest.onBeforeRequest.addListener(
+  (details) => {
+    console.log(details);
+  },
+  {
+    urls: ['<all_urls>'],
+  },
+  ['blocking']
+);
