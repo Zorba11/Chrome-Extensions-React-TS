@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "React Extension",
+  "name": "WeatherExtension",
   "description": "React Extension",
   "version": "1.0.0",
+  "permissions": ["storage", "tabs", "contextMenus", "alarms", "tabGroups"],
   "icons": {
     "16": "icon.png",
     "32": "icon.png",
@@ -22,7 +23,7 @@
     {
       "matches": ["<all_urls>"],
       "js": ["contentScript.js"],
-      "run_at": "document_start"
+      "run_at": "document_idle"
     }
   ]
 }

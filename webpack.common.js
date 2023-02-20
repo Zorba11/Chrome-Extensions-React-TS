@@ -8,7 +8,7 @@ module.exports = {
     popup: path.resolve('src/popup/popup.tsx'),
     options: path.resolve('src/options/options.tsx'),
     background: path.resolve('src/background/background.ts'),
-    contentScript: path.resolve('src/contentScript/contentScript.ts'),
+    contentScript: path.resolve('src/contentScript/contentScript.tsx'),
   },
   module: {
     rules: [
@@ -52,8 +52,12 @@ module.exports = {
   optimization: {
     // allows chunks to share modules
     splitChunks: {
-      chunks: 'all',
+      chunks(chunk) {
+        // so that contentScript won't go into the dist folder
+        return chunk.name !== 'contentScript';
+      },
     },
+    runtimeChunk: false,
   },
 };
 
